@@ -2,6 +2,15 @@
 
 namespace App\Lib\EcommercePlatform;
 
+/**
+ * @OA\Schema(
+ *     title="Price",
+ *     description="Product Price",
+ *     type="object",
+ *     @OA\Property(property="currency", title="currency", description="Price currency", example="USD", type="string"),
+ *     @OA\Property(property="price", title="price",description="Price",example="1.99", type="float")
+ * )
+ */
 class Price
 {
     /* @var array $prices */

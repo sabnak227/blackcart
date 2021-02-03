@@ -1,0 +1,143 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Blackcart Api",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/stores/{store_id}/products": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "Get list of store products",
+                "description": "Returns list of store products",
+                "operationId": "getStoreProducts",
+                "parameters": [
+                    {
+                        "name": "store_id",
+                        "in": "path",
+                        "description": "Store id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Option": {
+                "title": "Option",
+                "description": "Product options",
+                "properties": {
+                    "name": {
+                        "title": "Option name",
+                        "description": "option name",
+                        "type": "string",
+                        "example": "Color"
+                    },
+                    "value": {
+                        "title": "Option value",
+                        "description": "option value",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": [
+                                "red",
+                                "yellow"
+                            ]
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Price": {
+                "title": "Price",
+                "description": "Product Price",
+                "properties": {
+                    "currency": {
+                        "title": "currency",
+                        "description": "Price currency",
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "Price",
+                        "type": "float",
+                        "example": "1.99"
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "title": "Product",
+                "description": "Product info",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "product id",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "product name",
+                        "type": "string",
+                        "example": "product"
+                    },
+                    "price": {
+                        "description": "product price in different currencies",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Price"
+                        }
+                    },
+                    "inventory": {
+                        "title": "inventory",
+                        "description": "product inventory, when inventory >= 0, product in stock with quantity,\n     *                   else stock is not being tracked",
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "option": {
+                        "description": "product options",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Option"
+                        }
+                    },
+                    "weight": {
+                        "title": "weight",
+                        "description": "product weight",
+                        "type": "integer",
+                        "example": "100"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

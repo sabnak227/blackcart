@@ -2,27 +2,83 @@
 
 namespace App\Lib\EcommercePlatform;
 
+/**
+ * @OA\Schema(
+ *     title="Product",
+ *     description="Product info",
+ *     type="object",
+ * )
+ */
 class Product
 {
-    /* @var int $id */
+    /**
+     * @OA\Property(
+     *      title="id",
+     *      description="product id",
+     *      example="1"
+     * )
+     *
+     * @var int
+     */
     protected $id;
 
-    /* @var string $name */
+    /**
+     * @OA\Property(
+     *      title="name",
+     *      description="product name",
+     *      example="product"
+     * )
+     *
+     * @var string
+     */
     protected $name;
 
-    /* @var Price $price */
+    /**
+     * @OA\Property(
+     *      property="price",
+     *      description="product price in different currencies",
+     *      type="array",
+     *      @OA\Items(ref="#/components/schemas/Price")
+     * )
+     *
+     * @var Price
+     */
     protected $price;
 
-    /* @var int $inventory
-     * $inventory >= 0 -> in stock with quantity
-     * $inventory < 0 -> stock is not being tracked
+
+    /**
+     * @OA\Property(
+     *      title="inventory",
+     *      description="product inventory, when inventory >= 0, product in stock with quantity,
+     *                   else stock is not being tracked",
+     *      example="10"
+     * )
+     *
+     * @var int
      */
     protected $inventory;
 
-    /* @var Option $option */
+    /**
+     * @OA\Property(
+     *      property="option",
+     *      description="product options",
+     *      type="array",
+     *      @OA\Items(ref="#/components/schemas/Option")
+     * )
+     *
+     * @var Option
+     */
     protected $option;
 
-    /* @var int $weight */
+    /**
+     * @OA\Property(
+     *      title="weight",
+     *      description="product weight",
+     *      example="100"
+     * )
+     *
+     * @var int
+     */
     protected $weight;
 
 

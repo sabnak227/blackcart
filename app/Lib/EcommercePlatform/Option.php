@@ -2,6 +2,18 @@
 
 namespace App\Lib\EcommercePlatform;
 
+/**
+ * @OA\Schema(
+ *     title="Option",
+ *     description="Product options",
+ *     type="object",
+ *     @OA\Property(property="name", title="Option name", description="option name", example="Color", type="string"),
+ *     @OA\Property(property="value", title="Option value", description="option value", type="array", @OA\Items(
+ *          type="string",
+ *          example={"red", "yellow"},
+ *     )),
+ * )
+ */
 class Option
 {
     /* @var array $option */
@@ -21,7 +33,7 @@ class Option
         $result = [];
         foreach($this->option as $key => $values) {
             $result[] = [
-                'option' => $key,
+                'name' => $key,
                 'values' => array_keys($values)
             ];
         }
