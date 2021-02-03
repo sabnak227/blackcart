@@ -1,3 +1,3 @@
-create database blackcart;
-create user blackcart with encrypted password 'blackcart';
-grant all privileges on database blackcart to blackcart;
+#Project Setup
+### Homestead
+- Preferably using homestead as the dev environment,
